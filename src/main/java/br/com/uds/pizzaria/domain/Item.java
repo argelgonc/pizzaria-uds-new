@@ -8,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -79,13 +78,25 @@ public @Data class Item extends DominioEntity {
   }
 
   public boolean hasAdicionalPorCategoria(final String categoria) {
-    return getAdicionais().stream().anyMatch(a -> a.getCategoria().getNome().equals(categoria));
+    if (categoria == null) {
+      return false;
+    }
+
+    return getAdicionais().stream()
+        .anyMatch(a -> a.getCategoria().getNome().toUpperCase().equals(categoria.toUpperCase()));
   }
 
   public boolean hasAdicionalPorNomeECategoria(final String adicional, final String categoria) {
+
+    if (adicional == null || categoria == null) {
+      return false;
+    }
+
     return getAdicionais().stream()
         .anyMatch(
-            a -> a.getCategoria().getNome().equals(categoria) && a.getNome().equals(adicional));
+            a ->
+                a.getCategoria().getNome().toUpperCase().equals(categoria)
+                    && a.getNome().toUpperCase().equals(adicional));
   }
 
   public boolean isCompleto() {

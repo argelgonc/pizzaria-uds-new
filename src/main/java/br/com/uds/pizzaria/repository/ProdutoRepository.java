@@ -29,13 +29,13 @@ public interface ProdutoRepository
       "SELECT a FROM Adicional a "
           + "INNER JOIN a.categoria c "
           + "INNER JOIN c.produto p "
-          + "WHERE c.nome = :categoria "
-          + "AND a.nome = :adicional "
-          + "AND p.nome = :produto")
+          + "WHERE  upper(c.nome) = upper(:categoria) "
+          + "AND upper(a.nome) = upper(:adicional) "
+          + "AND upper(p.nome) = upper(:produto)")
   Stream<Adicional> findByAdicionalAndCategoriaAndProduto(
       @Param("adicional") String adicional,
       @Param("categoria") String categoria,
       @Param("produto") String produto);
 
-  Optional<Produto> findFirstByNome(String nome);
+  Optional<Produto> findFirstByNomeIgnoreCase(String nome);
 }
