@@ -26,6 +26,7 @@ VALUES (5, NOW(), 2, 'Portuguesa', '0.00', 5, TRUE);
 INSERT INTO adicional (id, criado_em, categoria_id, nome, preco, tempo_preparo, ativo)
 VALUES (6, NOW(), 2, 'Marguerita', '0.00', 0, TRUE);
 
+
 INSERT INTO adicional_categoria (id, criado_em, produto_id, nome, ativo, minimo, maximo)
 VALUES (3, NOW(), 1, 'Adicional', TRUE, 0, 100);
 
@@ -36,4 +37,4 @@ INSERT INTO adicional (id, criado_em, categoria_id, nome, preco, tempo_preparo, 
 VALUES (8, NOW(), 3, 'Sem Cebola', '0.00', 0, TRUE);
 
 INSERT INTO adicional (id, criado_em, categoria_id, nome, preco, tempo_preparo, ativo)
-VALUES (9, NOW(), 3, 'Borda Rechedada', '5.00', 5, TRUE);
+VALUES (9, NOW(), 3, 'Borda Recheada', '5.00', 5, TRUE);
