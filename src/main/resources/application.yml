@@ -36,9 +36,9 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://127.0.0.1:5432/pizzaria
-    username: postgres
-    password: abundanc1A
+    url: jdbc:postgresql://127.0.0.1:54320/pizzaria
+    username: root
+    password: root
 
 logging:
   level:
