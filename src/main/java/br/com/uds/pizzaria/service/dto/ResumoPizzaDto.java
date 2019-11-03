@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public @Data class ResumoPizzaDto implements Serializable {
 
-  private String tamanho;
+  private ItemValoradoDto tamanho;
 
-  private String sabor;
+  private ItemValoradoDto sabor;
 
-  private Set<String> personalizacoes = new HashSet<>();
+  private Set<ItemValoradoDto> personalizacoes = new HashSet<>();
 
   private String valorTotal;
 
