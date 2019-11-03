@@ -18,4 +18,9 @@ public @Data class SolicitacaoClienteDto implements Serializable {
   private String solicitacao;
 
   private String resposta;
+
+  public SolicitacaoClienteDto(String solicitacao, String resposta) {
+    this.solicitacao = solicitacao;
+    this.resposta = resposta;
+  }
 }

@@ -40,6 +40,12 @@ public @Data class Item extends DominioEntity{
   @ManyToMany(fetch = FetchType.EAGER)
   private Set<Adicional> adicionais = new HashSet<>();
 
+
+  public Item(Produto produto, Adicional adicional) {
+    this.quantidade = 1L;
+    this.produto = produto;
+    this.adicionais.add(adicional);
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
