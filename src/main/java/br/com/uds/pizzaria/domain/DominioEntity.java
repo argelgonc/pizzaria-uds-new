@@ -2,6 +2,7 @@ package br.com.uds.pizzaria.domain;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,4 +27,21 @@ public abstract @Data class DominioEntity implements Serializable {
   @Column(name = "atualizado_em")
   @UpdateTimestamp
   private ZonedDateTime atualizadoEm;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof DominioEntity)) {
+      return false;
+    }
+
+    return getId() != null && getId().equals(((DominioEntity) o).getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getId());
+  }
 }

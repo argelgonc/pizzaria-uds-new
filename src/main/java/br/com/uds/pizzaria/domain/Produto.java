@@ -2,6 +2,7 @@ package br.com.uds.pizzaria.domain;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -25,4 +26,20 @@ public @Data class Produto extends ValoradoEntity{
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "produto")
   Set<AdicionalCategoria> categoriasAdicionais = new HashSet<>();
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Produto)) {
+      return false;
+    }
+
+    return super.equals(o);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 }

@@ -12,6 +12,7 @@ package br.com.uds.pizzaria.repository;
 
 
 import br.com.uds.pizzaria.domain.Produto;
+import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -21,4 +22,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long>, JpaSpecificationExecutor<Produto> {
 
+  Set<Produto> findAllByAtivoTrue();
 }

@@ -1,6 +1,7 @@
 package br.com.uds.pizzaria.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -28,6 +29,7 @@ public @Data class AdicionalCategoria extends DominioEntity {
 
   @NotNull
   @ManyToOne(fetch = FetchType.LAZY)
+  @JsonIgnore
   private Produto produto;
 
   @NotNull
@@ -46,4 +48,20 @@ public @Data class AdicionalCategoria extends DominioEntity {
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "categoria")
   private Set<Adicional> adicionais = new HashSet<>();
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof AdicionalCategoria)) {
+      return false;
+    }
+
+    return super.equals(o);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 }

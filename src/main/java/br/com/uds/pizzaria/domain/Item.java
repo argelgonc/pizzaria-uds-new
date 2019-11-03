@@ -1,13 +1,13 @@
 package br.com.uds.pizzaria.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
@@ -26,6 +26,7 @@ public @Data class Item extends DominioEntity{
 
   @NotNull
   @ManyToOne(fetch = FetchType.LAZY)
+  @JsonIgnore
   private Pedido pedido;
 
   @NotNull
@@ -39,4 +40,20 @@ public @Data class Item extends DominioEntity{
   @ManyToMany(fetch = FetchType.EAGER)
   private Set<Adicional> adicionais = new HashSet<>();
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Item)) {
+      return false;
+    }
+
+    return super.equals(o);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 }

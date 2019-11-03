@@ -1,6 +1,7 @@
 package br.com.uds.pizzaria.domain;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
@@ -24,5 +25,22 @@ public abstract @Data class ValoradoEntity extends DominioEntity {
 
   @ColumnDefault("FALSE")
   private Boolean ativo = Boolean.FALSE;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof ValoradoEntity)) {
+      return false;
+    }
+
+    return super.equals(o);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 
 }

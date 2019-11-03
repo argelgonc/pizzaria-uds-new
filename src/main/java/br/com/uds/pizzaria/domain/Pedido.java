@@ -23,4 +23,21 @@ public @Data class Pedido extends DominioEntity{
 
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pedido")
   private Set<Item> itens = new HashSet<>();
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Pedido)) {
+      return false;
+    }
+
+    return super.equals(o);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 }
