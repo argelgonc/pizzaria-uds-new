@@ -11,7 +11,8 @@ spring:
     name: Pizzaria
 
   flyway:
-    enabled: false
+    enabled: true
+    baseline-on-migrate: true
 
   activemq:
     pool:
