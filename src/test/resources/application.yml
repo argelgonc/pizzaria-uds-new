@@ -1,0 +1,48 @@
+server:
+  compression:
+    enabled: true
+    mime-types: "application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css"
+    min-response-size: 10240
+  port: 8089
+
+spring:
+
+  application:
+    name: Pizzaria
+
+  flyway:
+    enabled: false
+
+  activemq:
+    pool:
+      enabled: false
+
+  profiles:
+    active: dev
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:pizzaria;DB_CLOSE_DELAY=-1
+    name:
+    username: root
+    password: root
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+
