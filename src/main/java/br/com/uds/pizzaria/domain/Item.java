@@ -1,6 +1,7 @@
 package br.com.uds.pizzaria.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -85,5 +86,35 @@ public @Data class Item extends DominioEntity {
     return getAdicionais().stream()
         .anyMatch(
             a -> a.getCategoria().getNome().equals(categoria) && a.getNome().equals(adicional));
+  }
+
+  public boolean isCompleto() {
+    for (AdicionalCategoria categoria : produto.getCategoriasAdicionais()) {
+      Long escolhasPorCategoria =
+          getAdicionais().stream()
+              .filter(a -> a.getCategoria().getNome().equals(categoria.getNome()))
+              .count();
+
+      if (categoria.getMinimo() > escolhasPorCategoria
+          || categoria.getMaximo() < escolhasPorCategoria) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  public BigDecimal getValorTotal() {
+    return produto
+        .getPreco()
+        .add(
+            adicionais.stream()
+                .map(ValoradoEntity::getPreco)
+                .reduce(BigDecimal.ZERO, BigDecimal::add));
+  }
+
+  public Long getTempoPreparo() {
+    return produto.getTempoPreparo()
+        + adicionais.stream().mapToLong(ValoradoEntity::getTempoPreparo).sum();
   }
 }

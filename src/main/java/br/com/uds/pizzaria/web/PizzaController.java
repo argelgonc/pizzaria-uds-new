@@ -1,5 +1,6 @@
 package br.com.uds.pizzaria.web;
 
+import br.com.uds.pizzaria.service.GetResumoPizzaService;
 import br.com.uds.pizzaria.service.MontaPersonalizacaoPizzaService;
 import br.com.uds.pizzaria.service.MontaSaborPizzaService;
 import br.com.uds.pizzaria.service.MontaTamanhoPizzaService;
@@ -27,6 +28,9 @@ public class PizzaController {
   @Autowired MontaSaborPizzaService montaSaborPizzaService;
 
   @Autowired MontaPersonalizacaoPizzaService montaPersonalizacaoPizzaService;
+
+  @Autowired
+  GetResumoPizzaService getResumoPizzaService;
 
   @PostMapping("/montar/tamanho")
   public ResponseEntity<SolicitacaoClienteDto> montarTamanho(
@@ -61,8 +65,11 @@ public class PizzaController {
   }
 
   @GetMapping("/{idPedido}/resumo")
-  public ResponseEntity<ResumoPizzaDto> resumo(
-      @PathVariable Long idPedido, @RequestBody SolicitacaoClienteDto body) {
-    return ResponseEntity.ok().build();
+  public ResponseEntity resumo(@PathVariable Long idPedido) {
+    try {
+      return ResponseEntity.ok(getResumoPizzaService.getResumo(idPedido));
+    } catch (SolicitacaoClienteException exception) {
+      return ResponseEntity.badRequest().body(exception.getSolicitacao());
+    }
   }
 }

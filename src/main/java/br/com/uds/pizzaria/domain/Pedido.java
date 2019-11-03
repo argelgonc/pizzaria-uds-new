@@ -1,5 +1,6 @@
 package br.com.uds.pizzaria.domain;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -57,5 +58,13 @@ public @Data class Pedido extends DominioEntity {
   @Override
   public int hashCode() {
     return super.hashCode();
+  }
+
+  public BigDecimal getValorTotal() {
+    return itens.stream().map(Item::getValorTotal).reduce(BigDecimal.ZERO, BigDecimal::add);
+  }
+
+  public Long getTempoPreparo() {
+    return itens.stream().mapToLong(Item::getTempoPreparo).sum();
   }
 }
