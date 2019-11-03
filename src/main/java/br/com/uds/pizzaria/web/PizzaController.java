@@ -1,9 +1,8 @@
 package br.com.uds.pizzaria.web;
 
-import br.com.uds.pizzaria.domain.Produto;
+import br.com.uds.pizzaria.service.MontaPersonalizacaoPizzaService;
 import br.com.uds.pizzaria.service.MontaSaborPizzaService;
 import br.com.uds.pizzaria.service.MontaTamanhoPizzaService;
-import br.com.uds.pizzaria.service.ProdutoService;
 import br.com.uds.pizzaria.service.dto.ResumoPizzaDto;
 import br.com.uds.pizzaria.service.dto.SolicitacaoClienteDto;
 import br.com.uds.pizzaria.service.exception.SolicitacaoClienteException;
@@ -27,6 +26,8 @@ public class PizzaController {
 
   @Autowired MontaSaborPizzaService montaSaborPizzaService;
 
+  @Autowired MontaPersonalizacaoPizzaService montaPersonalizacaoPizzaService;
+
   @PostMapping("/montar/tamanho")
   public ResponseEntity<SolicitacaoClienteDto> montarTamanho(
       @RequestBody SolicitacaoClienteDto solicitacao) {
@@ -48,10 +49,15 @@ public class PizzaController {
     }
   }
 
-  @PutMapping("/{idPedido}/montar/personalizar")
+  @PutMapping("/{idPedido}/montar/personalizacao")
   public ResponseEntity<SolicitacaoClienteDto> personalizar(
-      @PathVariable Long idPedido, @RequestBody SolicitacaoClienteDto body) {
-    return ResponseEntity.ok().build();
+      @PathVariable Long idPedido, @RequestBody Set<SolicitacaoClienteDto> solicitacoes) {
+    try {
+      return ResponseEntity.ok(
+          montaPersonalizacaoPizzaService.montaPersonalizacao(solicitacoes, idPedido));
+    } catch (SolicitacaoClienteException exception) {
+      return ResponseEntity.badRequest().body(exception.getSolicitacao());
+    }
   }
 
   @GetMapping("/{idPedido}/resumo")

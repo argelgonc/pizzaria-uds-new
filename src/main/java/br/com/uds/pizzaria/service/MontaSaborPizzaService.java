@@ -5,7 +5,6 @@ import br.com.uds.pizzaria.domain.Pedido;
 import br.com.uds.pizzaria.repository.PedidoRepository;
 import br.com.uds.pizzaria.service.dto.SolicitacaoClienteDto;
 import br.com.uds.pizzaria.service.exception.SolicitacaoClienteException;
-import java.time.ZonedDateTime;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,18 +22,19 @@ public class MontaSaborPizzaService {
   public SolicitacaoClienteDto montaSabor(SolicitacaoClienteDto solicitacao)
       throws SolicitacaoClienteException {
 
-    Optional<Pedido> pedido = pedidoRepository.findById(solicitacao.getIdPedido());
+    Pedido pedido = pedidoRepository.getOne(solicitacao.getIdPedido());
 
-    if (pedido.isPresent()) {
-      Item item = pedido.get().getItemPorNomeProduto("Pizza");
+    if (pedido != null) {
+      Item item = pedido.getItemPorNomeProduto("Pizza");
       if (item != null) {
         if (!item.hasAdicionalPorCategoria("Sabor")) {
           item.addAdicional(
               getAdicionalService.getAdicional(solicitacao.getSolicitacao(), "Sabor", "Pizza"));
-          pedidoRepository.save(pedido.get());
+          pedidoRepository.save(pedido);
           solicitacao.setResposta("Sabor adicionado com sucesso");
+          return solicitacao;
         } else {
-          solicitacao.setResposta("Pizza já contém sabor escolhido");
+          solicitacao.setResposta("Pizza já contém sabor");
         }
       } else {
         solicitacao.setResposta("Pedido não contém pizza");

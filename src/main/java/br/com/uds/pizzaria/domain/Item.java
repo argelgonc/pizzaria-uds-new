@@ -6,6 +6,9 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -39,6 +42,10 @@ public @Data class Item extends DominioEntity {
   private Produto produto;
 
   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @JoinTable(
+      name = "item_adicionais",
+      joinColumns = {@JoinColumn(name = "item_id")},
+      inverseJoinColumns = {@JoinColumn(name = "adicionais_id")})
   private Set<Adicional> adicionais = new HashSet<>();
 
   public Item(Produto produto, Adicional adicional) {
@@ -64,13 +71,19 @@ public @Data class Item extends DominioEntity {
     return super.hashCode();
   }
 
-  public void addAdicional(Adicional adicional) {
+  public void addAdicional(final Adicional adicional) {
     if (adicional != null) {
       getAdicionais().add(adicional);
     }
   }
 
-  public boolean hasAdicionalPorCategoria(String categoria) {
+  public boolean hasAdicionalPorCategoria(final String categoria) {
     return getAdicionais().stream().anyMatch(a -> a.getCategoria().getNome().equals(categoria));
+  }
+
+  public boolean hasAdicionalPorNomeECategoria(final String adicional, final String categoria) {
+    return getAdicionais().stream()
+        .anyMatch(
+            a -> a.getCategoria().getNome().equals(categoria) && a.getNome().equals(adicional));
   }
 }
