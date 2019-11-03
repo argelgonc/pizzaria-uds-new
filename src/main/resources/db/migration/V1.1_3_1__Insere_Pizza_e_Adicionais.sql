@@ -21,7 +21,7 @@ INSERT INTO adicional (id, criado_em, categoria_id, nome, preco, tempo_preparo, 
 VALUES (4, NOW(), 2, 'Calabresa', '0.00', 0, TRUE);
 
 INSERT INTO adicional (id, criado_em, categoria_id, nome, preco, tempo_preparo, ativo)
-VALUES (5, NOW(), 2, 'Portuguesa', '5.00', 5, TRUE);
+VALUES (5, NOW(), 2, 'Portuguesa', '0.00', 5, TRUE);
 
 INSERT INTO adicional (id, criado_em, categoria_id, nome, preco, tempo_preparo, ativo)
 VALUES (6, NOW(), 2, 'Marguerita', '0.00', 0, TRUE);
