@@ -1,0 +1,47 @@
+server:
+  compression:
+    enabled: true
+    mime-types: "application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css"
+    min-response-size: 10240
+  port: 8080
+
+spring:
+
+  application:
+    name: Pizzaria
+
+  flyway:
+    enabled: false
+
+  activemq:
+    pool:
+      enabled: false
+
+  profiles:
+    active: dev
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/pizzaria
+    username: postgres
+    password: abundanc1A
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+
