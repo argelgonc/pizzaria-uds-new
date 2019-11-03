@@ -5,7 +5,6 @@ import br.com.uds.pizzaria.domain.Pedido;
 import br.com.uds.pizzaria.repository.PedidoRepository;
 import br.com.uds.pizzaria.service.dto.SolicitacaoClienteDto;
 import br.com.uds.pizzaria.service.exception.SolicitacaoClienteException;
-import java.util.Optional;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +22,7 @@ public class MontaPersonalizacaoPizzaService {
   public SolicitacaoClienteDto montaPersonalizacao(
       Set<SolicitacaoClienteDto> solicitacoes, Long idPedido) throws SolicitacaoClienteException {
 
-    Pedido pedido = pedidoRepository.getOne(idPedido);
+    Pedido pedido = pedidoRepository.findById(idPedido).orElse(null);
 
     if (pedido != null) {
       Item item = pedido.getItemPorNomeProduto("Pizza");
@@ -31,22 +30,29 @@ public class MontaPersonalizacaoPizzaService {
       if (item != null) {
 
         if (!item.hasAdicionalPorCategoria("Sabor")) {
-          throw new SolicitacaoClienteException(new SolicitacaoClienteDto("Adicionais",
-              "Pizza necessita de sabor para incluir adicionais"));
+          throw new SolicitacaoClienteException(
+              new SolicitacaoClienteDto(
+                  "Adicionais", "Pizza necessita de sabor para incluir adicionais"));
         }
 
-        for (SolicitacaoClienteDto solicitacao: solicitacoes) {
+        for (SolicitacaoClienteDto solicitacao : solicitacoes) {
           if (item.hasAdicionalPorNomeECategoria(solicitacao.getSolicitacao(), "Adicional")) {
-            throw new SolicitacaoClienteException(new SolicitacaoClienteDto(
-                solicitacao.getSolicitacao(),
-                "Já está incluso no pedido"));
+            throw new SolicitacaoClienteException(
+                new SolicitacaoClienteDto(
+                    solicitacao.getSolicitacao(), "Já está incluso no pedido"));
           } else {
-            item.addAdicional(getAdicionalService.getAdicional(solicitacao.getSolicitacao(), "Adicional", "Pizza"));
+            item.addAdicional(
+                getAdicionalService.getAdicional(
+                    solicitacao.getSolicitacao(), "Adicional", "Pizza"));
           }
 
           pedidoRepository.save(pedido);
         }
       }
+    } else {
+      throw new SolicitacaoClienteException(
+          new SolicitacaoClienteDto(
+              "Adicionais", "Pedido não encontrado"));
     }
 
     return new SolicitacaoClienteDto("Adicionais", "Adicionais incluídos com sucesso");

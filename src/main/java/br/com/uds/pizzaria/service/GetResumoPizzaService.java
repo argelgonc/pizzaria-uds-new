@@ -28,7 +28,7 @@ public class GetResumoPizzaService {
   @Transactional
   public ResumoPizzaDto getResumo(Long idPedido) throws SolicitacaoClienteException {
 
-    Pedido pedido = pedidoRepository.getOne(idPedido);
+    Pedido pedido = pedidoRepository.findById(idPedido).orElse(null);
 
     if (pedido != null) {
       Item item = pedido.getItemPorNomeProduto("Pizza");

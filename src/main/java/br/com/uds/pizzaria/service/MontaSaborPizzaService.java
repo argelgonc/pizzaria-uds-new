@@ -5,7 +5,6 @@ import br.com.uds.pizzaria.domain.Pedido;
 import br.com.uds.pizzaria.repository.PedidoRepository;
 import br.com.uds.pizzaria.service.dto.SolicitacaoClienteDto;
 import br.com.uds.pizzaria.service.exception.SolicitacaoClienteException;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +21,7 @@ public class MontaSaborPizzaService {
   public SolicitacaoClienteDto montaSabor(SolicitacaoClienteDto solicitacao)
       throws SolicitacaoClienteException {
 
-    Pedido pedido = pedidoRepository.getOne(solicitacao.getIdPedido());
+    Pedido pedido = pedidoRepository.findById(solicitacao.getIdPedido()).orElse(null);
 
     if (pedido != null) {
       Item item = pedido.getItemPorNomeProduto("Pizza");

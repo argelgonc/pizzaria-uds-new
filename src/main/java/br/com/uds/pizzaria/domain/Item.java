@@ -95,8 +95,8 @@ public @Data class Item extends DominioEntity {
     return getAdicionais().stream()
         .anyMatch(
             a ->
-                a.getCategoria().getNome().toUpperCase().equals(categoria)
-                    && a.getNome().toUpperCase().equals(adicional));
+                a.getCategoria().getNome().toUpperCase().equals(categoria.toUpperCase())
+                    && a.getNome().toUpperCase().equals(adicional.toUpperCase()));
   }
 
   public boolean isCompleto() {
