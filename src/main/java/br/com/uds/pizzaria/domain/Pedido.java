@@ -1,6 +1,5 @@
 package br.com.uds.pizzaria.domain;
 
-
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -13,21 +12,36 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * Um pedido representa uma ordem de compra na pizzaria, onde cada um pode ter um cliente e seus itens
+ * Um pedido representa uma ordem de compra na pizzaria, onde cada um pode ter um cliente e seus
+ * itens
  */
 @Entity
 @Table(name = "pedido")
 @NoArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
-public @Data class Pedido extends DominioEntity{
+public @Data class Pedido extends DominioEntity {
 
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pedido")
   private Set<Item> itens = new HashSet<>();
 
-
   public Pedido(Item item) {
-    this.itens.add(item);
+    addItem(item);
   }
+
+  public void addItem(Item item) {
+    if (item != null) {
+      item.setPedido(this);
+      this.getItens().add(item);
+    }
+  }
+
+  public Item getItemPorNomeProduto(String nomeProduto) {
+    return itens.stream()
+        .filter(i -> i.getProduto().getNome().equals(nomeProduto))
+        .findFirst()
+        .orElse(null);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
