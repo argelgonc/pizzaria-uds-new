@@ -1,0 +1,780 @@
+{
+	"info": {
+		"_postman_id": "fc9dd77f-f327-4936-90ad-a2b149bb0e97",
+		"name": "Pizzaria UDS",
+		"description": "Coleção com endpoints para execução do teste de desenvolvimento da Pizzaria UDS.\n\nSequência recomendada para utilização correta da aplicação.\n\n1. Montar tamanho\n2. Adicionar sabor\n3. Personalizar Pizza (opcional)\n4. Resumo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 - Montagem do tamanho",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"solicitacao\": \"média\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8097/api/pedidos/pizza/montar/tamanho",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"api",
+						"pedidos",
+						"pizza",
+						"montar",
+						"tamanho"
+					]
+				},
+				"description": "Inicia a montagem da pizza. Retornando o id do pedido que deve ser utilizado para a montagem do sabor, personalizaççao e resumo.\nAceita os valores de \"grande\", \"média\" e \"pequena\""
+			},
+			"response": [
+				{
+					"name": "1 - Montagem do tamanho - Sucesso",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"solicitacao\": \"média\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/montar/tamanho",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"montar",
+								"tamanho"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"idPedido\": 1,\n    \"solicitacao\": \"média\",\n    \"resposta\": \"Tamanho adicionado com sucesso\"\n}"
+				},
+				{
+					"name": "1 - Montagem do tamanho - Tamanho não encontrado",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"solicitacao\": \"azul\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/montar/tamanho",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"montar",
+								"tamanho"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"idPedido\": null,\n  \"solicitacao\": \"azul\",\n  \"resposta\": \"azul não encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "2 - Montagem do sabor",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"solicitacao\": \"calabresa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8097/api/pedidos/pizza/1/montar/sabor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"api",
+						"pedidos",
+						"pizza",
+						"1",
+						"montar",
+						"sabor"
+					]
+				},
+				"description": "Inicia a montagem da pizza. Retornando o id do pedido que deve ser utilizado para a montagem do sabor, personalizaççao e resumo.\nAceita os valores de \"grande\", \"média\" e \"pequena\""
+			},
+			"response": [
+				{
+					"name": "1 - Montagem do tamanho - Sucesso",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"solicitacao\": \"média\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/montar/tamanho",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"montar",
+								"tamanho"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"idPedido\": 1,\n    \"solicitacao\": \"média\",\n    \"resposta\": \"Tamanho adicionado com sucesso\"\n}"
+				},
+				{
+					"name": "2 - Montagem do sabor - Sucesso",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"solicitacao\": \"calabresa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/1/montar/sabor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"1",
+								"montar",
+								"sabor"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"idPedido\": 1,\n  \"solicitacao\": \"calabresa\",\n  \"resposta\": \"Sabor adicionado com sucesso\"\n}"
+				},
+				{
+					"name": "1 - Montagem do tamanho - Tamanho não encontrado",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"solicitacao\": \"azul\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/montar/tamanho",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"montar",
+								"tamanho"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"idPedido\": null,\n  \"solicitacao\": \"azul\",\n  \"resposta\": \"azul não encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "3 - Personalização",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"solicitacao\": \"Sem cebola\"\n\t},\n\t{\n\t\t\"solicitacao\": \"Extra Bacon\"\n\t}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8097/api/pedidos/pizza/1/montar/personalizacao",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"api",
+						"pedidos",
+						"pizza",
+						"1",
+						"montar",
+						"personalizacao"
+					]
+				},
+				"description": "Inicia a montagem da pizza. Retornando o id do pedido que deve ser utilizado para a montagem do sabor, personalizaççao e resumo.\nAceita os valores de \"grande\", \"média\" e \"pequena\""
+			},
+			"response": [
+				{
+					"name": "3 - Personalização - Sucesso",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"solicitacao\": \"Sem cebola\"\n\t},\n\t{\n\t\t\"solicitacao\": \"Extra Bacon\"\n\t}\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/1/montar/personalizacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"1",
+								"montar",
+								"personalizacao"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n\t\"idPedido\": 1,\n\t\"solicitacao\": \"Adicionais\",\n\t\"resposta\": \"Adicionais incluídos com sucesso\"\n}"
+				},
+				{
+					"name": "2 - Montagem do sabor - Sucesso",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"solicitacao\": \"calabresa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/1/montar/sabor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"1",
+								"montar",
+								"sabor"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"idPedido\": 1,\n  \"solicitacao\": \"calabresa\",\n  \"resposta\": \"Sabor adicionado com sucesso\"\n}"
+				},
+				{
+					"name": "1 - Montagem do tamanho - Sucesso",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"solicitacao\": \"média\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/montar/tamanho",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"montar",
+								"tamanho"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"idPedido\": 1,\n    \"solicitacao\": \"média\",\n    \"resposta\": \"Tamanho adicionado com sucesso\"\n}"
+				},
+				{
+					"name": "1 - Montagem do tamanho - Tamanho não encontrado",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"solicitacao\": \"azul\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/montar/tamanho",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"montar",
+								"tamanho"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"idPedido\": null,\n  \"solicitacao\": \"azul\",\n  \"resposta\": \"azul não encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "4 - Resumo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8097/api/pedidos/pizza/1/resumo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"api",
+						"pedidos",
+						"pizza",
+						"1",
+						"resumo"
+					]
+				},
+				"description": "Inicia a montagem da pizza. Retornando o id do pedido que deve ser utilizado para a montagem do sabor, personalizaççao e resumo.\nAceita os valores de \"grande\", \"média\" e \"pequena\""
+			},
+			"response": [
+				{
+					"name": "1 - Montagem do tamanho - Sucesso",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"solicitacao\": \"média\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/montar/tamanho",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"montar",
+								"tamanho"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"idPedido\": 1,\n    \"solicitacao\": \"média\",\n    \"resposta\": \"Tamanho adicionado com sucesso\"\n}"
+				},
+				{
+					"name": "3 - Personalização - Sucesso",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"solicitacao\": \"Sem cebola\"\n\t},\n\t{\n\t\t\"solicitacao\": \"Extra Bacon\"\n\t}\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/1/montar/personalizacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"1",
+								"montar",
+								"personalizacao"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n\t\"idPedido\": 1,\n\t\"solicitacao\": \"Adicionais\",\n\t\"resposta\": \"Adicionais incluídos com sucesso\"\n}"
+				},
+				{
+					"name": "2 - Montagem do sabor - Sucesso",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"solicitacao\": \"calabresa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/1/montar/sabor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"1",
+								"montar",
+								"sabor"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"idPedido\": 1,\n  \"solicitacao\": \"calabresa\",\n  \"resposta\": \"Sabor adicionado com sucesso\"\n}"
+				},
+				{
+					"name": "4 - Resumo - Sucesso",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/1/resumo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"1",
+								"resumo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"tamanho\": {\n        \"nome\": \"Média\",\n        \"valor\": \"R$ 30,00\"\n    },\n    \"sabor\": {\n        \"nome\": \"Marguerita\",\n        \"valor\": \"R$ 0,00\"\n    },\n    \"personalizacoes\": [\n        {\n            \"nome\": \"Borda Recheada\",\n            \"valor\": \"R$ 5,00\"\n        }\n    ],\n    \"valorTotal\": \"R$ 35,00\",\n    \"tempoDePreparo\": 25\n}"
+				},
+				{
+					"name": "1 - Montagem do tamanho - Tamanho não encontrado",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"solicitacao\": \"azul\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8097/api/pedidos/pizza/montar/tamanho",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8097",
+							"path": [
+								"api",
+								"pedidos",
+								"pizza",
+								"montar",
+								"tamanho"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"idPedido\": null,\n  \"solicitacao\": \"azul\",\n  \"resposta\": \"azul não encontrado\"\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
