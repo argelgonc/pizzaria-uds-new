@@ -24,7 +24,9 @@
 >./mvnw spring-boot:run
 
 
-###ENDPOINTS [Coleção  para Postman](Pizzaria UDS.postman_collection.json) 
+###ENDPOINTS
+
+[Coleção  para Postman](https://github.com/argelgoncalves/pizzaria-uds/blob/develop/Pizzaria%20UDS.postman_collection.json) 
 
 1.Montar a pizza selecionando o tamanho,  e armazenar o _idPedido_ retornado
 
