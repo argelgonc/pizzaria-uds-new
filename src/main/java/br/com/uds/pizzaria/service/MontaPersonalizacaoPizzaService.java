@@ -48,6 +48,10 @@ public class MontaPersonalizacaoPizzaService {
 
           pedidoRepository.save(pedido);
         }
+      } else {
+        throw new SolicitacaoClienteException(
+            new SolicitacaoClienteDto(
+                "Adicionais", "Pedido não contém pizza"));
       }
     } else {
       throw new SolicitacaoClienteException(
