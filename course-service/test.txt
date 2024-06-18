@@ -1,1 +1,1 @@
-course-ser
+course-service
